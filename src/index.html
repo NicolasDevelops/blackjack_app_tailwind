@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+
+	<link rel="stylesheet" href="./output.css">
+	
+	<title>My Blackjack App</title>
+</head>
+<body class="bg-gradient-to-b from-gradientBlue via-gradientYellow to-gradientPurple h-screen font-poppins">
+	<!-- APP ELEMENT -->
+	<section class="blackjack-app relative">
+		<!-- COINS ELEMENT -->
+		<article id="coins-container" class="coins-container absolute right-1/2 bottom-0 transform translate-x-1/2 bg-customBlue py-2 px-3 rounded-full !mb-[11rem] flex gap-1">
+			<img src="/public/icons/coinsIcon.svg?sanitize=true" alt="Coins Icon" class="coins-icon" decoding="async" loading="lazy" />
+			<p id="coins-el" title="Your coins" class="select-none">100</p>
+		</article>
+		<!-- CARDS CONTAINER -->
+		<section class="flex flex-col items-center justify-center h-screen gap-24">
+			<h1 id="heading" class="text-bold text-3xl md:text-4xl lg:text-5xl text-center motion-duration-300">Would you like to play Blackjack?</h1>
+			<article>
+				<!-- CARDS CONTAINER -->
+				<div id="cards-el" class="cards-container flex justify-center mb-28 hidden select-none">
+
+				</div>
+			</article>
+			<!-- CONTROLS ELEMENTS -->
+		</section>
+		<section>
+			<article class="controls-container absolute bottom-0 flex justify-center w-full mb-16">
+				<!-- CONTROLS ELEMENTS CONTAINER-->
+				<div class="controls-element-container flex">
+					<!-- START ELEMENT -->
+					<div id="start-button" onClick="startGame()" class=" w-[7rem] h-full -rotate-[24deg] translate-y-5 -mr-3 cursor-pointer select-none transition ease duration-300">
+						<img src="/public/trapezoid.svg?sanitize=true" class="w-[7rem] h-full transition duration-300 ease" decoding="async" loading="lazy" />
+						<div class="text-center absolute top-0 mt-9 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-mainBlue rounded-full p-1">
+							<img src="/public/icons/restartIcon.svg" alt="Start Icon" class="icon w-11" decoding="async" loading="lazy" />
+						</div>
+						<p id="start-el" class="text-center absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-2">Start</p>
+					</div>
+					<!-- TOTAL ELEMENT -->
+					<div class="w-[7rem] h-full select-none">
+						<img src="/public/trapezoid.svg?sanitize=true" class="total-element w-[7rem] h-full transition duration-300 ease relative select-none" decoding="async" loading="lazy" />
+						<p id="total-el" class="top-0 mt-9 absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-3 text-center w-[50px] h-[50px] bg-mainYellow rounded-full font-bold">0</p>
+						<p class="bottom-0 absolute left-1/2 transform -translate-x-1/2 mb-2">Total</p>
+					</div>
+					<!-- HIT ELEMENT -->
+					<div id="hit-el" onClick="newCard()" class="w-[7rem] h-full rotate-[24deg] translate-y-5 -ml-3 cursor-pointer select-none duration-300">
+						<img src="/public/trapezoid.svg?sanitize=true" class="controls-element w-[7rem] h-full relative" decoding="async" loading="lazy" />
+						<div class="text-center absolute top-0 mt-9 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-mainPurple rounded-full p-1">
+							<img src="/public/icons/hitIcon.svg" alt="Hit Icon" class="icon rotate-45 w-11" decoding="async" loading="lazy" />
+						</div>
+						<p class="text-center absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-2">Hit</p>
+					</div>
+				</div>
+			</article>
+		</section>
+	</section>
+	<script src="./js/main.js"></script>
+</body>
+</html>
