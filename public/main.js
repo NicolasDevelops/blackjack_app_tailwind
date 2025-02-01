@@ -44,12 +44,12 @@ function displayCards(card1, card2) {
 	cardsEl.innerHTML = '';
 
 	const cardElement1 = document.createElement('img');
-	cardElement1.src = `/public/cards/${card1.name.toLowerCase()}.svg?sanitize=true`;
+	cardElement1.src = `/cards/${card1.name.toLowerCase()}.svg?sanitize=true`;
 	cardElement1.classList.add('card', 'w-36', 'md:w-52', 'lg:w-64', 'h-full', 'motion-preset-slide-left', 'motion-duration-1000', 'drop-shadow-[0_4px_8px_rgba(0,0,0,0.1)]');
 	cardElement1.title = `${card1.name} - ${card1.value}`;
 	
 	const cardElement2 = document.createElement('img');
-	cardElement2.src = `/public/cards/${card2.name.toLowerCase()}.svg?sanitize=true`;
+	cardElement2.src = `/cards/${card2.name.toLowerCase()}.svg?sanitize=true`;
 	cardElement2.classList.add('card', 'w-36', 'md:w-52', 'lg:w-64', 'h-full', '-ml-24', 'motion-preset-slide-left', 'motion-delay-200', 'motion-duration-1000', 'drop-shadow-[0_4px_8px_rgba(0,0,0,0.3)]');
 	cardElement2.title = `${card2.name} - ${card2.value}`;
 
@@ -63,7 +63,7 @@ function displayCards(card1, card2) {
 
 function displayNewCard(newCard) {
 	const newCardElement = document.createElement('img');
-	newCardElement.src = `/public/cards/${newCard.name.toLowerCase()}.svg?sanitize=true`;
+	newCardElement.src = `/cards/${newCard.name.toLowerCase()}.svg?sanitize=true`;
 	newCardElement.classList.add('card', 'w-36', 'md:w-52', 'md:w-42', 'lg:w-64', 'h-full', '-ml-24', 'motion-preset-slide-left', 'motion-duration-1000', 'drop-shadow-[0_4px_8px_rgba(0,0,0,0.3)]');
 	newCardElement.title = `${newCard.name} - ${newCard.value}`;
 	cards.push(newCard.value);
