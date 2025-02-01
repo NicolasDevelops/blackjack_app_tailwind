@@ -13,7 +13,7 @@ module.exports = {
         mainPurple: '#D6BAC3',
       },
       fontFamily: {
-        poppins: ['Poppins', 'cursive'],
+        poppins: ['Poppins', 'sans-serif'],
       },
     },
   },
