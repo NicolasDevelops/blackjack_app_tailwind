@@ -2,9 +2,7 @@
   "name": "blackjack_app",
   "version": "1.0.0",
   "description": "",
-  "main": "tailwind.config.js",
   "scripts": {
-    "postinstall": "npm install",
     "dev": "npx tailwindcss -i ./src/input.css -o ./src/output.css --watch",
     "build": "npx tailwindcss -i ./src/input.css -o ./public/output.css --minify"
   },
