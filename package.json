@@ -5,7 +5,7 @@
   "main": "tailwind.config.js",
   "scripts": {
     "dev": "npx tailwindcss -i ./src/input.css -o ./src/output.css --watch",
-    "build": "npx tailwindcss -i ./src/input.css -o ./public/output.css --minify"
+    "build": "npx tailwindcss -i ./src/input.css -o ./public/output.css"
   },
   "keywords": [],
   "author": "",
