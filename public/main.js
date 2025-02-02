@@ -45,12 +45,12 @@ function displayCards(card1, card2) {
 
 	const cardElement1 = document.createElement('img');
 	cardElement1.src = `./cards/${card1.name.toLowerCase()}.svg?sanitize=true`;
-	cardElement1.classList.add('card', 'w-36', 'md:w-52', 'lg:w-64', 'h-full', 'motion-preset-slide-left', 'motion-duration-1000', 'drop-shadow-[0_4px_8px_rgba(0,0,0,0.1)]');
+	cardElement1.classList.add('card', 'w-36', 'md:w-52', 'lg:w-64', 'h-auto', 'motion-preset-slide-left', 'drop-shadow-[0_4px_8px_rgba(0,0,0,0.1)]', 'transition', 'ease', 'flex-shrink');
 	cardElement1.title = `${card1.name} - ${card1.value}`;
 	
 	const cardElement2 = document.createElement('img');
 	cardElement2.src = `./cards/${card2.name.toLowerCase()}.svg?sanitize=true`;
-	cardElement2.classList.add('card', 'w-36', 'md:w-52', 'lg:w-64', 'h-full', '-ml-24', 'motion-preset-slide-left', 'motion-delay-200', 'motion-duration-1000', 'drop-shadow-[0_4px_8px_rgba(0,0,0,0.3)]');
+	cardElement2.classList.add('card', 'w-36', 'md:w-52', 'lg:w-64', 'h-auto', '-ml-24', 'motion-preset-slide-left', 'motion-delay-200', 'drop-shadow-[0_4px_8px_rgba(0,0,0,0.3)]', 'transition', 'ease', 'flex-shrink');
 	cardElement2.title = `${card2.name} - ${card2.value}`;
 
 	cards.push(card1.value);
@@ -64,12 +64,35 @@ function displayCards(card1, card2) {
 function displayNewCard(newCard) {
 	const newCardElement = document.createElement('img');
 	newCardElement.src = `./cards/${newCard.name.toLowerCase()}.svg?sanitize=true`;
-	newCardElement.classList.add('card', 'w-36', 'md:w-52', 'md:w-42', 'lg:w-64', 'h-full', '-ml-24', 'motion-preset-slide-left', 'motion-duration-1000', 'drop-shadow-[0_4px_8px_rgba(0,0,0,0.3)]');
+	newCardElement.classList.add('card', 'w-36', 'md:w-52', 'md:w-42', 'lg:w-64', 'h-auto', '-ml-24', 'motion-preset-slide-left', 'motion-duration-1000', 'drop-shadow-[0_4px_8px_rgba(0,0,0,0.3)]', 'duration-300', 'transition', 'flex-shrink');
 	newCardElement.title = `${newCard.name} - ${newCard.value}`;
 	cards.push(newCard.value);
 	cardsEl.appendChild(newCardElement);
-
 }
+
+// Hover Card Function
+cardsEl.addEventListener('mouseover', handleCardHover);
+cardsEl.addEventListener('mouseout', handleCardHover);
+cardsEl.addEventListener('click', handleCardHover);
+
+function handleCardHover(e) {
+	if (e.target.classList.contains('card')) {
+		if (e.type === 'mouseover' || e.type === 'click') {
+			e.target.style.zIndex = '1000';
+			e.target.classList.add('-translate-y-3');
+			if (e.type === 'click') {
+				setTimeout(() => {
+					e.target.classList.remove('-translate-y-3');
+					e.target.style.zIndex = '0';
+				},1000);
+			}
+		} else if (e.type === 'mouseout') {
+			e.target.style.zIndex = '0';
+			e.target.classList.remove('-translate-y-3');
+		}
+	}
+}
+
 
 
 // Start Game Function

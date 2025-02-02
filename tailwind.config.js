@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{html,js,css}"],
+  safelist: ['brightness-50'],
   theme: {
     extend: {
       colors: {
