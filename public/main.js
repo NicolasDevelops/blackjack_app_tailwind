@@ -98,16 +98,20 @@ function handleCardHover(e) {
 			if (cardsEl.childElementCount > 1) {
 				total -= Number(e.target.title.split(' - ')[1]);
 				totalEl.textContent = total;
-				e.target.remove();
-				if (cardsEl.firstElementChild.classList.contains('-ml-24')) {
-					cardsEl.firstElementChild.classList.remove('-ml-24');
-				}
+				e.target.style.opacity = '0.5';
+				e.target.classList.add('motion-preset-confetti');
+				setTimeout(() => {
+					e.target.remove();
+					if (cardsEl.firstElementChild.classList.contains('-ml-24')) {
+						cardsEl.firstElementChild.classList.remove('-ml-24');
+					}
+				}, 800);
 			}
 		});
 	} else if (cardsEl.childElementCount === 1 && isAlive) {
 		header.textContent = "You can't remove all the cards!";
 	} else if (!isAlive) {
-		header.textContent = "You're out of the game, restart the game!";
+		header.textContent = "You lost, restart the game!";
 	}
 }
 
