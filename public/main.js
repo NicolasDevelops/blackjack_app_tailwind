@@ -45,12 +45,12 @@ function displayCards(card1, card2) {
 
 	const cardElement1 = document.createElement('img');
 	cardElement1.src = `./cards/${card1.name.toLowerCase()}.svg?sanitize=true`;
-	cardElement1.classList.add('card', 'w-36', 'md:w-52', 'lg:w-64', 'h-auto', 'motion-preset-slide-left', 'drop-shadow-[0_4px_8px_rgba(0,0,0,0.1)]', 'transition', 'ease', 'flex-shrink');
+	cardElement1.classList.add('card', 'w-36', 'md:w-52', 'lg:w-64', 'h-full', 'motion-preset-slide-left', 'drop-shadow-[0_4px_8px_rgba(0,0,0,0.1)]', 'transition', 'ease', 'cursor-pointer');
 	cardElement1.title = `${card1.name} - ${card1.value}`;
 	
 	const cardElement2 = document.createElement('img');
 	cardElement2.src = `./cards/${card2.name.toLowerCase()}.svg?sanitize=true`;
-	cardElement2.classList.add('card', 'w-36', 'md:w-52', 'lg:w-64', 'h-auto', '-ml-24', 'motion-preset-slide-left', 'motion-delay-200', 'drop-shadow-[0_4px_8px_rgba(0,0,0,0.3)]', 'transition', 'ease', 'flex-shrink');
+	cardElement2.classList.add('card', 'w-36', 'md:w-52', 'lg:w-64', 'h-full', '-ml-24', 'motion-preset-slide-left', 'motion-delay-200', 'drop-shadow-[0_4px_8px_rgba(0,0,0,0.3)]', 'transition', 'ease', 'cursor-pointer');
 	cardElement2.title = `${card2.name} - ${card2.value}`;
 
 	cards.push(card1.value);
@@ -59,12 +59,13 @@ function displayCards(card1, card2) {
 	cardsEl.appendChild(cardElement2);
 }
 
+
 // Display New Card Function
 
 function displayNewCard(newCard) {
 	const newCardElement = document.createElement('img');
 	newCardElement.src = `./cards/${newCard.name.toLowerCase()}.svg?sanitize=true`;
-	newCardElement.classList.add('card', 'w-36', 'md:w-52', 'md:w-42', 'lg:w-64', 'h-auto', '-ml-24', 'motion-preset-slide-left', 'motion-duration-1000', 'drop-shadow-[0_4px_8px_rgba(0,0,0,0.3)]', 'duration-300', 'transition', 'flex-shrink');
+	newCardElement.classList.add('card', 'w-36', 'md:w-52', 'md:w-42', 'lg:w-64', 'h-auto', '-ml-24', 'motion-preset-slide-left', 'motion-duration-1000', 'drop-shadow-[0_4px_8px_rgba(0,0,0,0.3)]', 'duration-300', 'transition', 'flex-shrink', 'cursor-pointer');
 	newCardElement.title = `${newCard.name} - ${newCard.value}`;
 	cards.push(newCard.value);
 	cardsEl.appendChild(newCardElement);
@@ -77,19 +78,36 @@ cardsEl.addEventListener('click', handleCardHover);
 
 function handleCardHover(e) {
 	if (e.target.classList.contains('card')) {
-		if (e.type === 'mouseover' || e.type === 'click') {
+		if (e.type === 'mouseover') {
 			e.target.style.zIndex = '1000';
 			e.target.classList.add('-translate-y-3');
-			if (e.type === 'click') {
-				setTimeout(() => {
-					e.target.classList.remove('-translate-y-3');
-					e.target.style.zIndex = '0';
-				},1000);
-			}
 		} else if (e.type === 'mouseout') {
 			e.target.style.zIndex = '0';
 			e.target.classList.remove('-translate-y-3');
 		}
+	}
+	// Remove Card Function
+	if (e.type === 'click' && cardsEl.childElementCount > 1 && isAlive) {
+		e.target.style.zIndex = '1000';
+		e.target.classList.add('-translate-y-3');
+		e.target.style.opacity = '0.5';
+		console.log("tst")
+		setTimeout(() => {
+			e.target.classList.remove('-translate-y-3');
+			e.target.style.zIndex = '0';
+			if (cardsEl.childElementCount > 1) {
+				total -= Number(e.target.title.split(' - ')[1]);
+				totalEl.textContent = total;
+				e.target.remove();
+				if (cardsEl.firstElementChild.classList.contains('-ml-24')) {
+					cardsEl.firstElementChild.classList.remove('-ml-24');
+				}
+			}
+		});
+	} else if (cardsEl.childElementCount === 1 && isAlive) {
+		header.textContent = "You can't remove all the cards!";
+	} else if (!isAlive) {
+		header.textContent = "You're out of the game, restart the game!";
 	}
 }
 
